@@ -1,0 +1,40 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "flou_parser",
+      "camelcase": "FlouParser",
+      "title": "Flou Parser",
+      "scope": "source.flou_parser",
+      "file-types": [
+        "f"
+      ],
+      "injection-regex": "^flou_parser$",
+      "class-name": "TreeSitterFlouParser"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "PPL",
+    "description": "A tree sitter parser for the Flou Programming language.",
+    "authors": [
+      {
+        "name": "Mika Aßmus",
+        "email": "mika.assmus@gmail.com",
+        "url": "https://github.com/mikatschuh"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/mikatschuh/tree-sitter-flou"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
