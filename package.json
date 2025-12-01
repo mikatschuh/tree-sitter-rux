@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter-flou",
+  "name": "tree-sitter-rux",
   "version": "0.1.0",
   "main": "bindings/node",
   "dependencies": {
