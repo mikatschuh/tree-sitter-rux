@@ -2,28 +2,30 @@
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
   "grammars": [
     {
-      "name": "flou_parser",
-      "camelcase": "FlouParser",
-      "title": "Flou Parser",
-      "scope": "source.flou_parser",
-      "file-types": ["rx"],
-      "injection-regex": "^flou_parser$",
-      "class-name": "TreeSitterFlouParser"
+      "name": "tree_sitter_rux",
+      "camelcase": "TreeSitterRux",
+      "title": "Tree Sitter Rux",
+      "scope": "source.tree_sitter_rux",
+      "file-types": [
+        "rx"
+      ],
+      "injection-regex": "^tree_sitter_rux$",
+      "class-name": "TreeSitterTreeSitterRux"
     }
   ],
   "metadata": {
     "version": "0.1.0",
-    "license": "PPL",
-    "description": "A tree sitter parser for the Flou Programming language.",
+    "license": "MIT",
+    "description": "A Tree Sitter Parser for the Rux Programming Language",
     "authors": [
       {
-        "name": "Mika Aßmus",
+        "name": "Mika",
         "email": "mika.assmus@gmail.com",
         "url": "https://github.com/mikatschuh"
       }
     ],
     "links": {
-      "repository": "https://github.com/mikatschuh/tree-sitter-flou"
+      "repository": "https://github.com/mikatschuh/tree-sitter-rux"
     }
   },
   "bindings": {

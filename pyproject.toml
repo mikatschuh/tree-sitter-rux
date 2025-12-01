@@ -3,23 +3,23 @@ requires = ["setuptools>=62.4.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "tree-sitter-flou-parser"
-description = "A tree sitter parser for the Flou Programming language."
+name = "tree-sitter-tree-sitter-rux"
+description = "A Tree Sitter Parser for the Rux Programming Language"
 version = "0.1.0"
-keywords = ["incremental", "parsing", "tree-sitter", "flou-parser"]
+keywords = ["incremental", "parsing", "tree-sitter", "tree-sitter-rux"]
 classifiers = [
   "Intended Audience :: Developers",
   "Topic :: Software Development :: Compilers",
   "Topic :: Text Processing :: Linguistic",
   "Typing :: Typed",
 ]
-authors = [{ name = "Mika Aßmus", email = "mika.assmus@gmail.com" }]
+authors = [{ name = "Mika", email = "mika.assmus@gmail.com" }]
 requires-python = ">=3.10"
-license.text = "PPL"
+license.text = "MIT"
 readme = "README.md"
 
 [project.urls]
-Homepage = "https://github.com/mikatschuh/tree-sitter-flou"
+Homepage = "https://github.com/mikatschuh/tree-sitter-rux"
 
 [project.optional-dependencies]
 core = ["tree-sitter~=0.24"]

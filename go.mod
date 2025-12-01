@@ -1,4 +1,4 @@
-module github.com/mikatschuh/tree-sitter-flou
+module github.com/mikatschuh/tree-sitter-rux
 
 go 1.22
 

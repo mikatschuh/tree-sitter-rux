@@ -1,13 +1,13 @@
 [package]
-name = "tree-sitter-flou-parser"
-description = "A tree sitter parser for the Flou Programming language."
+name = "tree-sitter-tree-sitter-rux"
+description = "A Tree Sitter Parser for the Rux Programming Language"
 version = "0.1.0"
-authors = ["Mika Aßmus <mika.assmus@gmail.com>"]
-license = "PPL"
+authors = ["Mika <mika.assmus@gmail.com>"]
+license = "MIT"
 readme = "README.md"
-keywords = ["incremental", "parsing", "tree-sitter", "flou-parser"]
+keywords = ["incremental", "parsing", "tree-sitter", "tree-sitter-rux"]
 categories = ["parser-implementations", "parsing", "text-editors"]
-repository = "https://github.com/mikatschuh/tree-sitter-flou"
+repository = "https://github.com/mikatschuh/tree-sitter-rux"
 edition = "2021"
 autoexamples = false
 

@@ -1,4 +1,4 @@
-"""A tree sitter parser for the Flou Programming language."""
+"""A Tree Sitter Parser for the Rux Programming Language"""
 
 from importlib.resources import files as _files
 
