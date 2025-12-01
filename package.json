@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "A Tree Sitter Parser for the Rux Programming Language",
   "repository": "https://github.com/mikatschuh/tree-sitter-rux",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "author": {
     "name": "Mika",
     "email": "mika.assmus@gmail.com",

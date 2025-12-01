@@ -1,7 +1,7 @@
 /**
  * @file A tree-sitter-parser for the Rux Programming Language
  * @author Mika Aßmus mika.assmus@gmail.com
- * @license PPL
+ * @license Apache 2.0
  */
 
 /// <reference types="tree-sitter-cli/dsl" />
