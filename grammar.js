@@ -77,7 +77,7 @@ module.exports = grammar({
         "defer",
         "move",
       ),
-    number: ($) => /\d+\.?\d*\S*/, // /[([\d\_]+[uifc])(0x)()]/,
+    number: ($) => /\d+\.?\d*\w*/, // /[([\d\_]+[uifc])(0x)()]/,
     identifier: ($) => /[a-zA-Z_]\S+/,
     string: ($) => /\".*\"/,
     comment: ($) => token(seq(/\/\//, /.*/, /\n/)),
