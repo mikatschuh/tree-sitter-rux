@@ -67,15 +67,20 @@ module.exports = grammar({
 
     keyword: ($) =>
       choice(
-        "proc",
+        "fn",
+        "struct",
+        "enum",
+
+        "let",
+        "var",
+
         "if",
-        "loop",
         "else",
+        "loop",
+        "in",
         "return",
         "break",
         "continue",
-        "defer",
-        "move",
       ),
     number: ($) => /\d+\.?\d*\w*/, // /[([\d\_]+[uifc])(0x)()]/,
     identifier: ($) => /[a-zA-Z_]\S+/,
