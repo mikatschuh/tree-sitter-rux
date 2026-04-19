@@ -20,6 +20,7 @@ module.exports = grammar({
           $.delimiter,
           $.keyword,
           $.number,
+          $.string,
           $.identifier,
         ),
       ),
@@ -83,8 +84,20 @@ module.exports = grammar({
         "continue",
       ),
     number: ($) => /\d+\.?\d*\w*/, // /[([\d\_]+[uifc])(0x)()]/,
-    identifier: ($) => /[a-zA-Z_]\S+/,
-    string: ($) => /\".*\"/,
-    comment: ($) => token(seq(/\/\//, /.*/, /\n/)),
+    string: ($) =>
+      token(seq('"', repeat(choice(/[^"\\]+/, /\\./)), '"')),
+
+    identifier: ($) =>
+      choice(
+        $.identifier_upper_snake_case,
+        $.identifier_pascal_case,
+        $.identifier_snake_case,
+      ),
+    identifier_snake_case: ($) => /[a-z][a-z0-9]*(?:_[a-z0-9]+)*/,
+    identifier_upper_snake_case: ($) => /[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*/,
+    identifier_pascal_case: ($) =>
+      /(?:[A-Z][a-zA-Z0-9]*|[a-z]+(?:[A-Z][a-zA-Z0-9]*)+)/,
+
+    comment: ($) => token(seq("//", /.*/)),
   },
 });

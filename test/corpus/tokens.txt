@@ -1,0 +1,45 @@
+==================
+Comment At EOF
+==================
+
+// comment at eof
+
+---
+
+(source_file
+  (comment))
+
+==================
+Identifier Variants
+==================
+
+let snake_case UPPER_SNAKE PascalCase camelCase
+
+---
+
+(source_file
+  (keyword)
+  (identifier
+    (identifier_snake_case))
+  (identifier
+    (identifier_upper_snake_case))
+  (identifier
+    (identifier_pascal_case))
+  (identifier
+    (identifier_pascal_case)))
+
+==================
+String Literal
+==================
+
+let name = "hello
+world"
+
+---
+
+(source_file
+  (keyword)
+  (identifier
+    (identifier_snake_case))
+  (operator)
+  (string))
