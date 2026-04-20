@@ -4,6 +4,8 @@
 (bracket) @punctuation.bracket
 
 (keyword) @keyword
+(atomic_type) @type.builtin
+(builtin_type) @type.builtin
 (identifier
   (identifier_snake_case) @variable)
 (identifier

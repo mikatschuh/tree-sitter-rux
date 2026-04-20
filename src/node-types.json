@@ -72,7 +72,15 @@
       "required": false,
       "types": [
         {
+          "type": "atomic_type",
+          "named": true
+        },
+        {
           "type": "bracket",
+          "named": true
+        },
+        {
+          "type": "builtin_type",
           "named": true
         },
         {
@@ -103,8 +111,16 @@
     }
   },
   {
+    "type": "atomic_type",
+    "named": true
+  },
+  {
     "type": "break",
     "named": false
+  },
+  {
+    "type": "builtin_type",
+    "named": true
   },
   {
     "type": "closed_curly",
