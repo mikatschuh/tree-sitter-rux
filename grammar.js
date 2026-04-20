@@ -50,6 +50,7 @@ const malformed_number = `(?:${decimal_integer}[^\\s+\\-]*|0[bsoxd][^\\s+\\-]*|$
 module.exports = grammar({
   name: "rux",
   extras: ($) => [/\s/, $.comment],
+  word: ($) => $.identifier_snake_case,
 
   rules: {
     source_file: ($) =>
@@ -62,6 +63,7 @@ module.exports = grammar({
           $.number,
           $.atomic_type,
           $.builtin_type,
+          $.boolean,
           $.string,
           $.identifier,
         ),
@@ -109,22 +111,24 @@ module.exports = grammar({
     delimiter: ($) => token(choice(".", ";", ",")),
 
     keyword: ($) =>
-      token(choice(
-        "fn",
-        "struct",
-        "enum",
+      token(
+        choice(
+          "fn",
+          "struct",
+          "enum",
 
-        "let",
-        "var",
+          "let",
+          "var",
 
-        "if",
-        "else",
-        "loop",
-        "in",
-        "return",
-        "break",
-        "continue",
-      )),
+          "if",
+          "else",
+          "loop",
+          "in",
+          "return",
+          "break",
+          "continue",
+        ),
+      ),
     number: ($) =>
       token(
         prec(
@@ -150,7 +154,7 @@ module.exports = grammar({
         ),
       ),
     string: ($) => token(seq('"', repeat(choice(/[^"\\]+/, /\\./)), '"')),
-    boolean: ($) => token(choice("true", "false"),
+    boolean: ($) => token(choice("true", "false")),
 
     identifier: ($) =>
       choice(

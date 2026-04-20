@@ -58,11 +58,6 @@
     }
   },
   {
-    "type": "keyword",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "source_file",
     "named": true,
     "root": true,
@@ -73,6 +68,10 @@
       "types": [
         {
           "type": "atomic_type",
+          "named": true
+        },
+        {
+          "type": "boolean",
           "named": true
         },
         {
@@ -115,8 +114,8 @@
     "named": true
   },
   {
-    "type": "break",
-    "named": false
+    "type": "boolean",
+    "named": true
   },
   {
     "type": "builtin_type",
@@ -140,24 +139,8 @@
     "extra": true
   },
   {
-    "type": "continue",
-    "named": false
-  },
-  {
     "type": "delimiter",
     "named": true
-  },
-  {
-    "type": "else",
-    "named": false
-  },
-  {
-    "type": "enum",
-    "named": false
-  },
-  {
-    "type": "fn",
-    "named": false
   },
   {
     "type": "identifier_pascal_case",
@@ -172,20 +155,8 @@
     "named": true
   },
   {
-    "type": "if",
-    "named": false
-  },
-  {
-    "type": "in",
-    "named": false
-  },
-  {
-    "type": "let",
-    "named": false
-  },
-  {
-    "type": "loop",
-    "named": false
+    "type": "keyword",
+    "named": true
   },
   {
     "type": "number",
@@ -208,19 +179,7 @@
     "named": true
   },
   {
-    "type": "return",
-    "named": false
-  },
-  {
     "type": "string",
     "named": true
-  },
-  {
-    "type": "struct",
-    "named": false
-  },
-  {
-    "type": "var",
-    "named": false
   }
 ]
