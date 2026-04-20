@@ -109,7 +109,7 @@ module.exports = grammar({
     delimiter: ($) => token(choice(".", ";", ",")),
 
     keyword: ($) =>
-      choice(
+      token(choice(
         "fn",
         "struct",
         "enum",
@@ -124,7 +124,7 @@ module.exports = grammar({
         "return",
         "break",
         "continue",
-      ),
+      )),
     number: ($) =>
       token(
         prec(
@@ -150,6 +150,7 @@ module.exports = grammar({
         ),
       ),
     string: ($) => token(seq('"', repeat(choice(/[^"\\]+/, /\\./)), '"')),
+    boolean: ($) => token(choice("true", "false"),
 
     identifier: ($) =>
       choice(

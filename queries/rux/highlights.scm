@@ -14,4 +14,5 @@
   (identifier_pascal_case) @type)
 (number) @number
 (string) @string
+(boolean) @boolean
 (comment) @comment

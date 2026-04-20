@@ -79,11 +79,17 @@ Number Literals
 Builtin Types
 ==================
 
-type bool
+type sumtype producttype f16 f32 f64 f128 bool
 
 ---
 
 (source_file
+  (builtin_type)
+  (builtin_type)
+  (builtin_type)
+  (builtin_type)
+  (builtin_type)
+  (builtin_type)
   (builtin_type)
   (builtin_type))
 
@@ -110,3 +116,15 @@ i0 i1 i3 i32 i128 i1140194019 u0 u64 i0b101 u0x20 i_32 u0dA2 i__32 u0x__20
   (atomic_type)
   (atomic_type)
   (atomic_type))
+
+==================
+Boolean Values
+==================
+
+true false
+
+---
+
+(source_file
+  (boolean)
+  (boolean))
