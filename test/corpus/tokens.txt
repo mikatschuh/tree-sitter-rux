@@ -50,8 +50,8 @@ snake@case) UPPER@SNAKE, Pascal@Case: camel@Case 10e-10foo
   (identifier
     (identifier_pascal_case))
   (number)
-  (operator)
-  (number))
+  (identifier
+    (identifier_snake_case)))
 
 ==================
 String Literal
@@ -74,7 +74,7 @@ Number Literals
 ==================
 
 64 1_000 _272_172_917 0b1011_0101 0s34_15_01 0o7 0dA2B1 0x00_00_0A_1F 3.14159 0b11.10110100 0b101e-6 10e-10 1g0e-10 0x10p10 0xAp+7 1e0x10 .01 __.__0 0x_._1Ap-10 0) 0e) 10e-10foo
-
+10e+10 10e-10 0b10e10 0b10e+10 0b_._10e-10
 ---
 
 (source_file
@@ -89,10 +89,6 @@ Number Literals
   (number)
   (number)
   (number)
-  (operator)
-  (number)
-  (number)
-  (operator)
   (number)
   (number)
   (operator)
@@ -110,7 +106,12 @@ Number Literals
   (bracket
     (closed_round))
   (number)
-  (operator)
+  (identifier
+    (identifier_snake_case))
+  (number)
+  (number)
+  (number)
+  (number)
   (number))
 
 ==================

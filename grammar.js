@@ -40,8 +40,8 @@ const any_base_integer = [
 
 const exponent_integer = `(?:${any_base_integer})`;
 const decimal_mantissa = radix_mantissa("0-9");
-const decimal_number = `(?:${decimal_mantissa}(?:e${exponent_integer})?)`;
-const binary_number = `(?:${prefixed_radix("b", "01")}(?:e${exponent_integer})?)`;
+const decimal_number = `(?:${decimal_mantissa}(?:e[+-]?${exponent_integer})?)`;
+const binary_number = `(?:${prefixed_radix("b", "01")}(?:e[+-]?${exponent_integer})?)`;
 const seximal_number = `(?:${prefixed_radix("s", "0-5")})`;
 const octal_number = `(?:${prefixed_radix("o", "0-7")})`;
 const dozenal_number = `(?:${prefixed_radix("d", "0-9AaBb")})`;
@@ -122,21 +122,21 @@ module.exports = grammar({
         prec(
           4,
           choice(
-          "fn",
-          "struct",
-          "enum",
+            "fn",
+            "struct",
+            "enum",
 
-          "let",
-          "var",
+            "let",
+            "var",
 
-          "if",
-          "else",
-          "loop",
-          "in",
-          "return",
-          "break",
-          "continue",
-        ),
+            "if",
+            "else",
+            "loop",
+            "in",
+            "return",
+            "break",
+            "continue",
+          ),
         ),
       ),
     number: ($) =>
