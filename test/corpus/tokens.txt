@@ -20,9 +20,9 @@ let snake_case UPPER_SNAKE PascalCase camelCase
 (source_file
   (keyword)
   (identifier
-    (identifier_pascal_case))
+    (identifier_snake_case))
   (identifier
-    (identifier_pascal_case))
+    (identifier_upper_snake_case))
   (identifier
     (identifier_pascal_case))
   (identifier
@@ -38,11 +38,11 @@ snake@case) UPPER@SNAKE, Pascal@Case: camel@Case 10e-10foo
 
 (source_file
   (identifier
-    (identifier_pascal_case))
+    (identifier_snake_case))
   (bracket
     (closed_round))
   (identifier
-    (identifier_pascal_case))
+    (identifier_upper_snake_case))
   (delimiter)
   (identifier
     (identifier_pascal_case))
@@ -65,7 +65,7 @@ world"
 (source_file
   (keyword)
   (identifier
-    (identifier_pascal_case))
+    (identifier_snake_case))
   (operator)
   (string))
 

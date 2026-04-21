@@ -49,12 +49,15 @@ const hexadecimal_number = `(?:${prefixed_radix("x", "0-9A-Fa-f")}(?:p[+-]?${exp
 const malformed_number_suffix = `[^${literal_terminators}]*`;
 const leading_dot_number = `(?:_*\\._*[0-9]${malformed_number_suffix})`;
 const malformed_number = `(?:${decimal_integer}${malformed_number_suffix}|0[bsoxd]${malformed_number_suffix}|${leading_dot_number})`;
-const identifier = `(?:[^0-9${literal_terminators}][^${literal_terminators}]*)`;
+const identifier_body = `[^${literal_terminators}]*`;
+const snake_identifier = `(?:[a-z][^A-Z${literal_terminators}]*)`;
+const upper_snake_identifier = `(?:[A-Z][^a-z${literal_terminators}]*)`;
+const pascal_identifier = `(?:[A-Z]${identifier_body}[a-z]${identifier_body}|[a-z]${identifier_body}[A-Z]${identifier_body})`;
 
 module.exports = grammar({
   name: "rux",
   extras: ($) => [/\s/, $.comment],
-  word: ($) => $.identifier_pascal_case,
+  word: ($) => $.identifier_snake_case,
 
   rules: {
     source_file: ($) =>
@@ -116,7 +119,9 @@ module.exports = grammar({
 
     keyword: ($) =>
       token(
-        choice(
+        prec(
+          4,
+          choice(
           "fn",
           "struct",
           "enum",
@@ -131,6 +136,7 @@ module.exports = grammar({
           "return",
           "break",
           "continue",
+        ),
         ),
       ),
     number: ($) =>
@@ -149,7 +155,7 @@ module.exports = grammar({
         ),
       ),
     atomic_type: ($) =>
-      token(prec(2, new RegExp(`[iu](?:${any_base_integer})`))),
+      token(prec(4, new RegExp(`[iu](?:${any_base_integer})`))),
     builtin_type: ($) =>
       token(
         prec(
@@ -158,10 +164,19 @@ module.exports = grammar({
         ),
       ),
     string: ($) => token(seq('"', repeat(choice(/[^"\\]+/, /\\./)), '"')),
-    boolean: ($) => token(choice("true", "false")),
+    boolean: ($) => token(prec(4, choice("true", "false"))),
 
-    identifier: ($) => $.identifier_pascal_case,
-    identifier_pascal_case: ($) => token(new RegExp(identifier)),
+    identifier: ($) =>
+      choice(
+        $.identifier_upper_snake_case,
+        $.identifier_pascal_case,
+        $.identifier_snake_case,
+      ),
+    identifier_snake_case: ($) => token(prec(1, new RegExp(snake_identifier))),
+    identifier_upper_snake_case: ($) =>
+      token(prec(1, new RegExp(upper_snake_identifier))),
+    identifier_pascal_case: ($) =>
+      token(prec(2, new RegExp(pascal_identifier))),
 
     comment: ($) => token(seq("//", /.*/)),
   },
