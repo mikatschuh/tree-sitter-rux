@@ -45,14 +45,6 @@
         {
           "type": "identifier_pascal_case",
           "named": true
-        },
-        {
-          "type": "identifier_snake_case",
-          "named": true
-        },
-        {
-          "type": "identifier_upper_snake_case",
-          "named": true
         }
       ]
     }
@@ -144,14 +136,6 @@
   },
   {
     "type": "identifier_pascal_case",
-    "named": true
-  },
-  {
-    "type": "identifier_snake_case",
-    "named": true
-  },
-  {
-    "type": "identifier_upper_snake_case",
     "named": true
   },
   {

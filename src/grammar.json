@@ -1,7 +1,7 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
   "name": "rux",
-  "word": "identifier_snake_case",
+  "word": "identifier_pascal_case",
   "rules": {
     "source_file": {
       "type": "REPEAT",
@@ -252,17 +252,17 @@
       "type": "TOKEN",
       "content": {
         "type": "PREC",
-        "value": 2,
+        "value": 1,
         "content": {
           "type": "CHOICE",
           "members": [
             {
               "type": "PATTERN",
-              "value": "(?:(?:_*[0-9](?:_*[0-9])*_*(?:\\._*[0-9](?:_*[0-9])*_*)?|_*\\._*[0-9](?:_*[0-9])*_*)(?:e[+-]?(?:_*[0-9](?:_*[0-9])*_*|0b_*[01](?:_*[01])*_*|0s_*[0-5](?:_*[0-5])*_*|0o_*[0-7](?:_*[0-7])*_*|0d_*[0-9AaBb](?:_*[0-9AaBb])*_*|0x_*[0-9A-Fa-f](?:_*[0-9A-Fa-f])*_*))?)"
+              "value": "(?:(?:_*[0-9](?:_*[0-9])*_*(?:\\._*[0-9](?:_*[0-9])*_*)?|_*\\._*[0-9](?:_*[0-9])*_*)(?:e(?:_*[0-9](?:_*[0-9])*_*|0b_*[01](?:_*[01])*_*|0s_*[0-5](?:_*[0-5])*_*|0o_*[0-7](?:_*[0-7])*_*|0d_*[0-9AaBb](?:_*[0-9AaBb])*_*|0x_*[0-9A-Fa-f](?:_*[0-9A-Fa-f])*_*))?)"
             },
             {
               "type": "PATTERN",
-              "value": "(?:0b(?:_*[01](?:_*[01])*_*(?:\\._*[01](?:_*[01])*_*)?|_*\\._*[01](?:_*[01])*_*)(?:e[+-]?(?:_*[0-9](?:_*[0-9])*_*|0b_*[01](?:_*[01])*_*|0s_*[0-5](?:_*[0-5])*_*|0o_*[0-7](?:_*[0-7])*_*|0d_*[0-9AaBb](?:_*[0-9AaBb])*_*|0x_*[0-9A-Fa-f](?:_*[0-9A-Fa-f])*_*))?)"
+              "value": "(?:0b(?:_*[01](?:_*[01])*_*(?:\\._*[01](?:_*[01])*_*)?|_*\\._*[01](?:_*[01])*_*)(?:e(?:_*[0-9](?:_*[0-9])*_*|0b_*[01](?:_*[01])*_*|0s_*[0-5](?:_*[0-5])*_*|0o_*[0-7](?:_*[0-7])*_*|0d_*[0-9AaBb](?:_*[0-9AaBb])*_*|0x_*[0-9A-Fa-f](?:_*[0-9A-Fa-f])*_*))?)"
             },
             {
               "type": "PATTERN",
@@ -282,7 +282,7 @@
             },
             {
               "type": "PATTERN",
-              "value": "(?:_*[0-9](?:_*[0-9])*_*[^\\s+\\-]*|0[bsoxd][^\\s+\\-]*|(?:_*\\._*[0-9][^\\s+\\-]*))"
+              "value": "(?:_*[0-9](?:_*[0-9])*_*[^\\s!'\"\\.\\=\\+\\-*/%·\\^|&:,;<>()\\[\\]{}]*|0[bsoxd][^\\s!'\"\\.\\=\\+\\-*/%·\\^|&:,;<>()\\[\\]{}]*|(?:_*\\._*[0-9][^\\s!'\"\\.\\=\\+\\-*/%·\\^|&:,;<>()\\[\\]{}]*))"
             }
           ]
         }
@@ -292,7 +292,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PREC",
-        "value": 1,
+        "value": 2,
         "content": {
           "type": "PATTERN",
           "value": "[iu](?:_*[0-9](?:_*[0-9])*_*|0b_*[01](?:_*[01])*_*|0s_*[0-5](?:_*[0-5])*_*|0o_*[0-7](?:_*[0-7])*_*|0d_*[0-9AaBb](?:_*[0-9AaBb])*_*|0x_*[0-9A-Fa-f](?:_*[0-9A-Fa-f])*_*)"
@@ -303,7 +303,7 @@
       "type": "TOKEN",
       "content": {
         "type": "PREC",
-        "value": 2,
+        "value": 3,
         "content": {
           "type": "PATTERN",
           "value": "(?:type|sumtype|producttype|usize|isize|f16|f32|f64|f128|bool)"
@@ -359,33 +359,15 @@
       }
     },
     "identifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "identifier_upper_snake_case"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier_pascal_case"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier_snake_case"
-        }
-      ]
-    },
-    "identifier_snake_case": {
-      "type": "PATTERN",
-      "value": "[a-z][a-z0-9]*(?:_[a-z0-9]+)*"
-    },
-    "identifier_upper_snake_case": {
-      "type": "PATTERN",
-      "value": "[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*"
+      "type": "SYMBOL",
+      "name": "identifier_pascal_case"
     },
     "identifier_pascal_case": {
-      "type": "PATTERN",
-      "value": "(?:[A-Z][a-zA-Z0-9]*|[a-z]+(?:[A-Z][a-zA-Z0-9]*)+)"
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "(?:[^0-9\\s!'\"\\.\\=\\+\\-*/%·\\^|&:,;<>()\\[\\]{}][^\\s!'\"\\.\\=\\+\\-*/%·\\^|&:,;<>()\\[\\]{}]*)"
+      }
     },
     "comment": {
       "type": "TOKEN",

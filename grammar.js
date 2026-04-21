@@ -7,6 +7,8 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
+const literal_terminators = String.raw`\s!'"\.\=\+\-*/%·\^|&:,;<>()\[\]{}`;
+
 const underscore_wrapped_digits = (digits) =>
   `_*[${digits}](?:_*[${digits}])*_*`;
 const underscore_run = "_*";
@@ -38,19 +40,21 @@ const any_base_integer = [
 
 const exponent_integer = `(?:${any_base_integer})`;
 const decimal_mantissa = radix_mantissa("0-9");
-const decimal_number = `(?:${decimal_mantissa}(?:e[+-]?${exponent_integer})?)`;
-const binary_number = `(?:${prefixed_radix("b", "01")}(?:e[+-]?${exponent_integer})?)`;
+const decimal_number = `(?:${decimal_mantissa}(?:e${exponent_integer})?)`;
+const binary_number = `(?:${prefixed_radix("b", "01")}(?:e${exponent_integer})?)`;
 const seximal_number = `(?:${prefixed_radix("s", "0-5")})`;
 const octal_number = `(?:${prefixed_radix("o", "0-7")})`;
 const dozenal_number = `(?:${prefixed_radix("d", "0-9AaBb")})`;
 const hexadecimal_number = `(?:${prefixed_radix("x", "0-9A-Fa-f")}(?:p[+-]?${exponent_integer})?)`;
-const leading_dot_number = `(?:_*\\._*[0-9][^\\s+\\-]*)`;
-const malformed_number = `(?:${decimal_integer}[^\\s+\\-]*|0[bsoxd][^\\s+\\-]*|${leading_dot_number})`;
+const malformed_number_suffix = `[^${literal_terminators}]*`;
+const leading_dot_number = `(?:_*\\._*[0-9]${malformed_number_suffix})`;
+const malformed_number = `(?:${decimal_integer}${malformed_number_suffix}|0[bsoxd]${malformed_number_suffix}|${leading_dot_number})`;
+const identifier = `(?:[^0-9${literal_terminators}][^${literal_terminators}]*)`;
 
 module.exports = grammar({
   name: "rux",
   extras: ($) => [/\s/, $.comment],
-  word: ($) => $.identifier_snake_case,
+  word: ($) => $.identifier_pascal_case,
 
   rules: {
     source_file: ($) =>
@@ -132,7 +136,7 @@ module.exports = grammar({
     number: ($) =>
       token(
         prec(
-          2,
+          1,
           choice(
             new RegExp(decimal_number),
             new RegExp(binary_number),
@@ -145,27 +149,19 @@ module.exports = grammar({
         ),
       ),
     atomic_type: ($) =>
-      token(prec(1, new RegExp(`[iu](?:${any_base_integer})`))),
+      token(prec(2, new RegExp(`[iu](?:${any_base_integer})`))),
     builtin_type: ($) =>
       token(
         prec(
-          2,
+          3,
           /(?:type|sumtype|producttype|usize|isize|f16|f32|f64|f128|bool)/,
         ),
       ),
     string: ($) => token(seq('"', repeat(choice(/[^"\\]+/, /\\./)), '"')),
     boolean: ($) => token(choice("true", "false")),
 
-    identifier: ($) =>
-      choice(
-        $.identifier_upper_snake_case,
-        $.identifier_pascal_case,
-        $.identifier_snake_case,
-      ),
-    identifier_snake_case: ($) => /[a-z][a-z0-9]*(?:_[a-z0-9]+)*/,
-    identifier_upper_snake_case: ($) => /[A-Z][A-Z0-9]*(?:_[A-Z0-9]+)*/,
-    identifier_pascal_case: ($) =>
-      /(?:[A-Z][a-zA-Z0-9]*|[a-z]+(?:[A-Z][a-zA-Z0-9]*)+)/,
+    identifier: ($) => $.identifier_pascal_case,
+    identifier_pascal_case: ($) => token(new RegExp(identifier)),
 
     comment: ($) => token(seq("//", /.*/)),
   },
