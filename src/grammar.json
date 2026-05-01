@@ -247,6 +247,10 @@
             {
               "type": "STRING",
               "value": "continue"
+            },
+            {
+              "type": "STRING",
+              "value": "unreachable"
             }
           ]
         }

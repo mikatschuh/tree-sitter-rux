@@ -167,3 +167,25 @@ true false
 (source_file
   (boolean)
   (boolean))
+
+==================
+Keywords
+==================
+
+let var fn enum struct if else loop in continue break unreachable
+
+---
+
+(source_file
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword)
+  (keyword))
